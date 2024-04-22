@@ -123,7 +123,20 @@ class kPCA:
         # RBF
         params = self.gamma
         K = np.exp(-params*sqrd_dists)
-
+        
+        # K2 = np.zeros((X_S.shape[0],X.shape[0]))
+        # for i in range(X_S.shape[0]):
+        #     for j in range(X.shape[0]):
+        #          # Convert each row to a numpy array and ensure they are flat arrays
+        #         x_si = np.array(X_S[i]).flatten()
+        #         x_j = np.array(X[j]).flatten()
+                
+        #         # Calculate the squared differences, then sum them up
+        #         squared_diff = np.sum((x_si - x_j) ** 2)
+                
+        #         # Calculate the Gaussian kernel value
+        #         K2[i, j] = np.exp(-params * squared_diff)
+     
         # Poly
         #params = self.order
         #K = np.power((sqrd_dists +1),params)
