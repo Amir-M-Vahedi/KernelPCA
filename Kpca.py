@@ -209,11 +209,15 @@ class kPCA:
             f_L = np.dot(k_L.T,alphs) - (sumalphs*np.ones((n_block,numev)) * \
                          np.expand_dims((np.sum(k_L,axis=0).T/n_sub - Ksum),axis=1)) \
                          -  np.ones((n_block, numev))*np.dot(Krow,alphs)
-
+            
 
             errs_block = ( 1 - (2*np.sum(k_L,axis = 0)/n_sub).T + Ksum ) \
                     - np.diag(np.dot(f_L,f_L.T))
 
+
+            # f_L2 = np.dot(k_L.T, alphs) - (sumalphs * np.expand_dims((np.sum(k_L, axis=0)/n_sub - Ksum), axis=0)) - np.dot(Krow, alphs)
+            # errs_block2 = 1 - (2 * np.sum(k_L, axis=0)/n_sub) + Ksum - np.sum(f_L * f_L, axis=0)
+            
             reconstruction_errs[block_i:block_i+self.batch_size] = errs_block
 
 

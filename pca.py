@@ -8,7 +8,9 @@ class PCA:
         """
         mean center the data for linear PCA
         """
-        mean = np.repeat(np.expand_dims(np.mean(data,axis=0),axis=0),data.shape[0],axis=0)
+        # mean = np.repeat(np.expand_dims(np.mean(data,axis=0),axis=0),data.shape[0],axis=0)
+        mean = np.mean(data, axis=0)  # Calculate the mean of each feature
+        s= np.std (data, axis=0)
         data = (data-mean)
         return(data)
 
@@ -37,7 +39,7 @@ class PCA:
 
         data = self.check_data(data)
 
-        self.Covar_mat = (1/self.n_samples)*data.T.dot(data)
+        self.Covar_mat = (1/(self.n_samples-1))*data.T.dot(data)
 
         #do eigendcomposition
         values, vectors = np.linalg.eig(self.Covar_mat)
